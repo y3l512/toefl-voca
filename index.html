@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>VocaCards - iOS 18 Flashcard App</title>
+  <link rel="stylesheet" href="styles.css?v=20261111_1">
+  <!-- Firebase App & Firestore Compat SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+</head>
+<body>
+
+  <!-- Device Container (iPhone 17 Frame) -->
+  <div class="device-container" id="deviceContainer">
+
+
+
+    <!-- App Header -->
+    <header class="app-header">
+      <div class="header-title-group">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <h1 id="headerTitle">전체 단어장</h1>
+          <span class="progress-pill" id="cardProgressPill">0/0</span>
+          <button class="cloud-badge-btn" id="btnCloudBadge" title="클라우드 동기화 설정" style="display: none !important;">
+            <span class="badge-dot" id="badgeDot"></span>
+            <span id="badgeText">클라우드 설정</span>
+          </button>
+        </div>
+        <span class="subtitle" id="headerSubtitle">총 0개의 단어</span>
+      </div>
+
+      <!-- Segmented Control for View Mode (Tab 1 & Tab 2) -->
+      <div class="segmented-control" id="viewModeToggle">
+        <button class="segmented-btn active" id="btnModeCard" data-mode="card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <rect x="3" y="4" width="18" height="16" rx="3"></rect>
+            <path d="M7 8h10M7 12h7"></path>
+          </svg>
+          카드
+        </button>
+        <button class="segmented-btn" id="btnModeList" data-mode="list">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <line x1="8" y1="6" x2="21" y2="6"></line>
+            <line x1="8" y1="12" x2="21" y2="12"></line>
+            <line x1="8" y1="18" x2="21" y2="18"></line>
+            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+          </svg>
+          리스트
+        </button>
+      </div>
+    </header>
+
+    <!-- Toast Notification -->
+    <div class="toast-notification" id="toast">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M20 6L9 17l-5-5"/>
+      </svg>
+      <span id="toastMsg">단어가 추가되었습니다</span>
+    </div>
+
+    <!-- App Main Body Panels -->
+    <main class="app-content">
+
+      <!-- ================= TAB 1: ALL WORDS (전체) ================= -->
+      <section class="tab-panel active" id="tabAll">
+        
+        <!-- Tab 1: Card View (Default) -->
+        <div class="card-view-container" id="allCardView">
+          <!-- Card Stack Deck -->
+          <div class="card-stack" id="allCardStack">
+            <!-- Dynamic Flashcards Inserted via JavaScript -->
+          </div>
+
+          <!-- Bottom Card Controls & Prominent FAB -->
+          <div class="card-controls-bar">
+            <!-- Swipe Favorite (Red/Orange X) -->
+            <button class="action-btn btn-pass" id="btnSwipeLeft" title="찜 목록에 추가 (Left Swipe)">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+
+            <!-- Undo Last Swipe -->
+            <button class="action-btn btn-undo" id="btnUndoSwipe" title="되돌리기">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M3 7v6h6"></path>
+                <path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"></path>
+              </svg>
+            </button>
+
+            <!-- Prominent Star FAB (Favorite Top Card) -->
+            <button class="fab-favorite" id="fabFavoriteAll" title="현재 단어 찜하기">
+              <svg viewBox="0 0 24 24">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+            </button>
+
+            <!-- Swipe Know (Green V) -->
+            <button class="action-btn btn-know" id="btnSwipeRight" title="암기 완료 / 카드 모드 제외 (Right Swipe)">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Tab 1: List View (Mode B) -->
+        <div class="list-view-container" id="allListView" style="display: none;">
+          <div class="search-box">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" class="search-input" id="searchAllInput" placeholder="단어 또는 뜻 검색...">
+          </div>
+          <div class="word-list" id="allWordList">
+            <!-- Dynamic List Items -->
+          </div>
+        </div>
+
+      </section>
+
+
+      <!-- ================= TAB 2: FAVORITES (찜) ================= -->
+      <section class="tab-panel" id="tabFav">
+        
+        <!-- Tab 2: List View (Default Mode A for Favorites) -->
+        <div class="list-view-container" id="favListView">
+          <div class="search-box">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" class="search-input" id="searchFavInput" placeholder="찜한 단어 검색...">
+          </div>
+          <div class="word-list" id="favWordList">
+            <!-- Dynamic Favorited List Items -->
+          </div>
+        </div>
+
+        <!-- Tab 2: Card View (Mode B for Favorites) -->
+        <div class="card-view-container" id="favCardView" style="display: none;">
+          <div class="card-stack" id="favCardStack">
+            <!-- Dynamic Favorited Flashcards -->
+          </div>
+
+          <div class="card-controls-bar">
+            <button class="action-btn btn-pass" id="favBtnSwipeLeft" title="찜 유지 (Left Swipe)">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+            <button class="fab-favorite active" id="fabFavoriteFav" title="찜해제">
+              <svg viewBox="0 0 24 24">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+            </button>
+            <button class="action-btn btn-know" id="favBtnSwipeRight" title="암기 완료 / 찜 목록 제외 (Right Swipe)">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+      </section>
+
+
+      <!-- ================= TAB 3: ADD WORD (단어추가) ================= -->
+      <section class="tab-panel" id="tabAdd">
+        <div class="form-container">
+          <div class="form-header">
+            <h2>새 단어 추가하기</h2>
+            <p>새 단어 등록 시 local <code>word.csv</code> 파일 및 Cloud DB에 자동 저장됩니다.</p>
+          </div>
+
+          <form id="addWordForm" onsubmit="return false;">
+            <div class="input-group" style="margin-bottom: 14px;">
+              <label class="input-label" for="inputWord">영단어</label>
+              <input type="text" id="inputWord" class="form-input" placeholder="영단어 입력 (예: mitigate)" required autocomplete="off">
+              <button type="button" class="btn-auto-fill" id="btnAutoFill" style="margin-top: 8px;">
+                ✨ 뜻 자동 생성
+              </button>
+            </div>
+
+            <div class="input-group">
+              <label class="input-label" for="inputMeaning">뜻 (선택)</label>
+              <input type="text" id="inputMeaning" class="form-input" placeholder="비워두면 자동 번역/생성됩니다 ✨" autocomplete="off">
+            </div>
+
+            <button type="submit" class="submit-btn" id="btnSubmitWord">추가하기</button>
+          </form>
+
+          <!-- CSV Export Button -->
+          <div style="margin-top: 20px; text-align: center;">
+            <button class="export-csv-btn" id="btnExportCSV">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              업데이트된 word.csv 다운로드
+            </button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+
+    <!-- Glassmorphic Bottom Navigation Bar -->
+    <nav class="bottom-nav">
+      <button class="nav-item active" id="navAll" data-tab="tabAll">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+          <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </svg>
+        <span class="nav-label">전체</span>
+      </button>
+
+      <button class="nav-item" id="navFav" data-tab="tabFav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+        </svg>
+        <span class="nav-label">찜</span>
+      </button>
+
+      <button class="nav-item" id="navAdd" data-tab="tabAdd">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="16"></line>
+          <line x1="6" y1="12" x2="18" y2="12"></line>
+        </svg>
+        <span class="nav-label">단어추가</span>
+      </button>
+    </nav>
+
+  </div>
+
+  <!-- Cloud Database Setup Modal -->
+  <div class="modal-backdrop" id="dbModal">
+    <div class="modal-card" style="max-height: 90vh; overflow-y: auto;">
+      <div class="modal-header">
+        <h3>🔥 Firebase Cloud DB 연동</h3>
+        <button class="modal-close" id="btnCloseModal">&times;</button>
+      </div>
+      <div style="background: #F0FDF4; border: 1px solid #BBF7D0; border-radius: 8px; padding: 12px; margin-bottom: 16px;">
+        <div style="font-size: 13px; font-weight: 700; color: #166534; margin-bottom: 4px;">✅ 구글 Firebase 자동 연결 완료</div>
+        <p style="font-size: 12px; color: #15803D; margin: 0; line-height: 1.4;">
+          절대 멈추거나 일시정지(Pause)되지 않는 <strong>Google Firebase Firestore</strong>에 연결되었습니다. PC와 모바일 어디서든 데이터가 안전하게 보관됩니다.
+        </p>
+      </div>
+
+      <!-- Sync section: Mobile ↔ Computer -->
+      <div style="margin-top: 12px; padding-top: 14px; border-top: 1px solid #E2E8F0;">
+        <h4 style="font-size: 14px; font-weight: 700; color: #1E293B; margin-bottom: 6px;">🔄 기기 간 학습기록 & 찜 동기화</h4>
+        <p style="font-size: 12px; color: #64748B; margin-bottom: 12px; line-height: 1.4;">
+          핸드폰의 학습 기록(암기 완료 카드, 찜 목록)을 클라우드에 올려 컴퓨터와 100% 동일하게 맞춥니다.
+        </p>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <button type="button" id="btnPushToCloud" class="submit-btn" style="background: linear-gradient(135deg, #34C759 0%, #28A745 100%); font-size: 13px; padding: 11px;">
+            📱 현재 기기(핸드폰) 기록 클라우드에 덮어쓰기
+          </button>
+          <button type="button" id="btnPullFromCloud" class="submit-btn" style="background: linear-gradient(135deg, #007AFF 0%, #0056B3 100%); font-size: 13px; padding: 11px;">
+            💻 클라우드 기록 이 기기로 불러오기
+          </button>
+          <button type="button" id="btnResetStudyData" class="submit-btn" style="background: #FFF1F2; color: #E11D48; border: 1px solid #FECDD3; font-size: 12px; font-weight: 600; padding: 10px; margin-top: 6px;">
+            🧹 찜하기 및 학습 완료 기록 싹 비우기 (단어 목록은 유지)
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Word Edit Modal (List View Edit) -->
+  <div class="modal-backdrop" id="editWordModal">
+    <div class="modal-card" style="max-height: 90vh; overflow-y: auto;">
+      <div class="modal-header">
+        <h3>✏️ 단어 정보 수정</h3>
+        <button class="modal-close" id="btnCloseEditModal">&times;</button>
+      </div>
+      <div class="input-group" style="margin-bottom: 12px;">
+        <label class="input-label" for="editWordInput">영단어</label>
+        <input type="text" id="editWordInput" class="form-input" placeholder="영단어 입력">
+      </div>
+      <div class="input-group" style="margin-bottom: 12px;">
+        <label class="input-label" for="editMeaningInput">뜻</label>
+        <input type="text" id="editMeaningInput" class="form-input" placeholder="뜻 입력">
+      </div>
+      <div class="input-group" style="margin-bottom: 12px;">
+        <label class="input-label" for="editExampleInput">영어 예문</label>
+        <textarea id="editExampleInput" class="form-input" rows="2" placeholder="영어 예문 입력"></textarea>
+      </div>
+      <div class="input-group" style="margin-bottom: 14px;">
+        <label class="input-label" for="editTranslationInput">예문 한국어 번역</label>
+        <textarea id="editTranslationInput" class="form-input" rows="2" placeholder="예문 한국어 번역 입력"></textarea>
+      </div>
+      <div style="display: flex; gap: 8px; margin-top: 10px;">
+        <button type="button" class="btn-auto-fill" id="btnEditAutoFill" style="flex: 1; font-size: 13px; padding: 10px;">✨ AI 자동 재생성</button>
+        <button type="button" class="submit-btn" id="btnSaveEditWord" style="flex: 1.5; font-size: 14px; padding: 10px;">저장하기</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="firebase-config.js?v=20261111_1"></script>
+  <script src="app.js?v=20261111_1"></script>
+</body>
+</html>
+
