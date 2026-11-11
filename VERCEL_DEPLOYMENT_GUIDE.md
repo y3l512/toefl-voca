@@ -26,9 +26,32 @@
 npx vercel --prod
 ```
 
-### 방법 B: GitHub 연동 배포
-1. 코드를 GitHub 저장소(Repository)에 push 합니다.
-2. [Vercel Dashboard](https://vercel.com/dashboard)에서 **Add New Project** -> GitHub 저장소를 선택하고 **Deploy**를 누릅니다.
+### 방법 B: GitHub 연동 (집 컴퓨터 & 다른 PC에서 함께 관리 + 자동 배포)
+
+1. **GitHub에 새 저장소(Repository) 만들기**
+   - https://github.com/new 에 접속해 빈 저장소(예: `toefl-vocacards`)를 생성합니다 (README 체크 해제).
+2. **현재 컴퓨터에서 GitHub로 업로드**
+   ```bash
+   git remote add origin https://github.com/<본인아이디>/<저장소이름>.git
+   git push -u origin main
+   ```
+3. **집 컴퓨터에서 가져와서 작업하기**
+   - 처음 한 번만 복제(clone):
+     ```bash
+     git clone https://github.com/<본인아이디>/<저장소이름>.git
+     ```
+   - 작업 시작 전 최신 코드 받기:
+     ```bash
+     git pull
+     ```
+   - 수정 후 올리기:
+     ```bash
+     git add .
+     git commit -m "단어장 업데이트"
+     git push
+     ```
+4. **Vercel과 GitHub 연결 (선택)**
+   - [Vercel 프로젝트 설정 -> Git](https://vercel.com/dashboard)에서 위 GitHub 저장소를 연결해 두면, 어느 컴퓨터에서든 `git push`만 하면 **Vercel 사이트가 자동으로 재배포**됩니다.
 
 ---
 
