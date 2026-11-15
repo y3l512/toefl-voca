@@ -411,7 +411,26 @@ const TOEFL_SENTENCE_MAP = {
   "relinquish": { meaning: "포기하다 / 양도하다", en: "Following the treaty, the monarch was forced to relinquish absolute control over taxation.", ko: "조약 체결 이후 군주는 과세에 대한 절대적 통제권을 포기(양도)해야 했다." },
   "replenish": { meaning: "보충하다 / 다시 채우다", en: "Annual river flooding helped replenish essential soil nutrients across the ancient floodplain.", ko: "매년 발생하는 강물의 범람은 고대 범람원 전역에 필수 토양 영양분을 보충하는 데 도움을 주었다." },
   "diminish": { meaning: "줄어들다 / 감소시키다", en: "Habitat loss continues to diminish the genetic diversity of isolated wildlife populations.", ko: "서식지 손실은 고립된 야생동물 개체군의 유전적 다양성을 계속해서 감소시킨다." },
-  "undermine": { meaning: "약화시키다 / 훼손하다", en: "Persistent inflation can undermine consumer confidence and slow long-term economic growth.", ko: "지속적인 인플레이션은 소비자 신뢰를 약화시키고 장기적인 경제 성장을 둔화시킬 수 있다." }
+  "undermine": { meaning: "약화시키다 / 훼손하다", en: "Persistent inflation can undermine consumer confidence and slow long-term economic growth.", ko: "지속적인 인플레이션은 소비자 신뢰를 약화시키고 장기적인 경제 성장을 둔화시킬 수 있다." },
+  "appreciation": { en: "The course encourages students to develop a critical appreciation of modernist literature.", ko: "그 강좌는 학생들이 모더니즘 문학에 대한 비판적 감상과 진가 인정을 기르도록 장려한다." },
+  "secretive": { en: "Certain nocturnal predators exhibit highly secretive behaviors to avoid detection by competitors.", ko: "특정 야행성 포식자들은 경쟁자들의 감지를 피하기 위해 매우 은밀하고 비밀스러운 행동을 보인다." },
+  "embrace": { en: "Many developing industries rapidly embrace renewable technologies to enhance long-term sustainability.", ko: "많은 발전 중인 산업들은 장기적인 지속 가능성을 높이기 위해 재생 에너지를 신속하게 수용하고 받아들인다." },
+  "stunts": { en: "Severe soil nutrient deficiency significantly stunts the physical development of young seedlings.", ko: "심각한 토양 영양 결핍은 어린 묘목의 신체적 성장을 크게 저해하고 방해한다." },
+  "orchestrated": { en: "The research team conducted an orchestrated series of laboratory trials across several universities.", ko: "연구팀은 여러 대학에 걸쳐 치밀하게 조율되고 조직화된 일련의 실험실 시험을 수행했다." },
+  "impose": { en: "International environmental treaties impose strict limits on industrial carbon dioxide emissions.", ko: "국제 환경 조약은 산업 이산화탄소 배출에 대해 엄격한 제한을 부과한다." },
+  "contract": { en: "Most metallic materials contract noticeably as surrounding ambient temperatures drop.", ko: "대부분의 금속 재료는 주변 온도가 떨어짐에 따라 눈에 띄게 수축한다." },
+  "compelling": { en: "Archaeological excavations provided compelling evidence supporting the trade route hypothesis.", ko: "고고학 발굴 작업은 무역로 가설을 뒷받침하는 강력하고 설득력 있는 증거를 제공했다." },
+  "astonishing": { en: "Marine biologists observed an astonishing degree of biodiversity surrounding deep hydrothermal vents.", ko: "해양 생물학자들은 심해 열수구 주변에서 놀라울 정도로 높은 수준의 생물 다양성을 관찰했다." },
+  "obsolescence": { en: "Rapid microchip innovation accelerates the economic obsolescence of consumer electronic devices.", ko: "급격한 마이크로칩 혁신은 소비자용 전자 기기의 경제적 노후화와 구식화를 가속화한다." },
+  "captivate": { en: "The vibrant fresco paintings continue to captivate historians studying Renaissance palace decoration.", ko: "생생한 프레스코 벽화는 르네상스 궁정 장식을 연구하는 역사가들의 마음을 계속해서 사로잡는다." },
+  "inference": { en: "Paleontologists made a logical inference regarding dinosaur behavior based on fossilized trackways.", ko: "고생물학자들은 화석화된 발자국 흔적을 바탕으로 공룡의 행동에 관한 논리적 추론을 이끌어냈다." },
+  "dismantle": { en: "Engineers worked carefully to dismantle the obsolete hydroelectric dam and restore river ecology.", ko: "엔지니어들은 노후화된 수력 발전 댐을 해체하고 하천 생태계를 복원하기 위해 세심하게 작업했다." },
+  "traction": { en: "The innovative solar energy proposal quickly gained traction among municipal policy makers.", ko: "혁신적인 태양광 에너지 제안은 지방 자치 정책 입안자들 사이에서 빠르게 추진력과 호응을 얻었다." },
+  "assembly-line process": { en: "The introduction of the assembly-line process drastically lowered manufacturing costs during the industrial era.", ko: "조립 라인 공정의 도입은 산업화 시대에 제조업 비용을 획기적으로 낮추었다." },
+  "retention": { en: "Organic humus in the upper soil layer improves moisture retention during prolonged summer droughts.", ko: "상층 토양의 유기 부식질은 길어지는 여름 가뭄 동안 수분 보유력을 향상시킨다." },
+  "accomodate": { en: "The newly expanded lecture hall can comfortably accommodate over five hundred university students.", ko: "새로 확장된 강의실은 500명 이상의 대학생을 편안하게 수용할 수 있다." },
+  "catering": { en: "Specialized private firms provide large-scale catering services for academic conferences and symposia.", ko: "전문 사설 업체들은 학술 회의와 심포지엄을 위한 대규모 출장 연회 및 음식 공급 서비스를 제공한다." },
+  "consensus": { en: "A broad scientific consensus affirms that human industrial activities drive modern climate shifts.", ko: "광범위한 과학적 합의는 인간의 산업 활동이 현대의 기후 변화를 주도한다는 점을 확인한다." }
 };
 
 // --- Application State ---
