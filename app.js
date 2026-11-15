@@ -415,7 +415,9 @@ const TOEFL_SENTENCE_MAP = {
   "appreciation": { en: "The course encourages students to develop a critical appreciation of modernist literature.", ko: "그 강좌는 학생들이 모더니즘 문학에 대한 비판적 감상과 진가 인정을 기르도록 장려한다." },
   "secretive": { en: "Certain nocturnal predators exhibit highly secretive behaviors to avoid detection by competitors.", ko: "특정 야행성 포식자들은 경쟁자들의 감지를 피하기 위해 매우 은밀하고 비밀스러운 행동을 보인다." },
   "embrace": { en: "Many developing industries rapidly embrace renewable technologies to enhance long-term sustainability.", ko: "많은 발전 중인 산업들은 장기적인 지속 가능성을 높이기 위해 재생 에너지를 신속하게 수용하고 받아들인다." },
+  "stunt": { en: "Severe soil nutrient deficiency can stunt the physical development of young seedlings.", ko: "심각한 토양 영양 결핍은 어린 묘목의 신체적 성장을 저해하고 방해할 수 있다." },
   "stunts": { en: "Severe soil nutrient deficiency significantly stunts the physical development of young seedlings.", ko: "심각한 토양 영양 결핍은 어린 묘목의 신체적 성장을 크게 저해하고 방해한다." },
+  "orchestrate": { en: "The research team worked to orchestrate a series of complex laboratory trials across several universities.", ko: "연구팀은 여러 대학에 걸쳐 일련의 복잡한 실험실 시험을 치밀하게 조직화하고 조율했다." },
   "orchestrated": { en: "The research team conducted an orchestrated series of laboratory trials across several universities.", ko: "연구팀은 여러 대학에 걸쳐 치밀하게 조율되고 조직화된 일련의 실험실 시험을 수행했다." },
   "impose": { en: "International environmental treaties impose strict limits on industrial carbon dioxide emissions.", ko: "국제 환경 조약은 산업 이산화탄소 배출에 대해 엄격한 제한을 부과한다." },
   "contract": { en: "Most metallic materials contract noticeably as surrounding ambient temperatures drop.", ko: "대부분의 금속 재료는 주변 온도가 떨어짐에 따라 눈에 띄게 수축한다." },
@@ -429,6 +431,7 @@ const TOEFL_SENTENCE_MAP = {
   "assembly-line process": { en: "The introduction of the assembly-line process drastically lowered manufacturing costs during the industrial era.", ko: "조립 라인 공정의 도입은 산업화 시대에 제조업 비용을 획기적으로 낮추었다." },
   "retention": { en: "Organic humus in the upper soil layer improves moisture retention during prolonged summer droughts.", ko: "상층 토양의 유기 부식질은 길어지는 여름 가뭄 동안 수분 보유력을 향상시킨다." },
   "accomodate": { en: "The newly expanded lecture hall can comfortably accommodate over five hundred university students.", ko: "새로 확장된 강의실은 500명 이상의 대학생을 편안하게 수용할 수 있다." },
+  "cater": { en: "Specialized service firms cater to the diverse nutritional needs of international conference attendees.", ko: "전문 서비스 기업들은 국제 학술 회의 참석자들의 다양한 영양적 요구를 충족시키고 만족시킨다." },
   "catering": { en: "Specialized private firms provide large-scale catering services for academic conferences and symposia.", ko: "전문 사설 업체들은 학술 회의와 심포지엄을 위한 대규모 출장 연회 및 음식 공급 서비스를 제공한다." },
   "consensus": { en: "A broad scientific consensus affirms that human industrial activities drive modern climate shifts.", ko: "광범위한 과학적 합의는 인간의 산업 활동이 현대의 기후 변화를 주도한다는 점을 확인한다." }
 };
