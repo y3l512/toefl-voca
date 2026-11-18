@@ -433,7 +433,17 @@ const TOEFL_SENTENCE_MAP = {
   "accomodate": { en: "The newly expanded lecture hall can comfortably accommodate over five hundred university students.", ko: "새로 확장된 강의실은 500명 이상의 대학생을 편안하게 수용할 수 있다." },
   "cater": { en: "Specialized service firms cater to the diverse nutritional needs of international conference attendees.", ko: "전문 서비스 기업들은 국제 학술 회의 참석자들의 다양한 영양적 요구를 충족시키고 만족시킨다." },
   "catering": { en: "Specialized private firms provide large-scale catering services for academic conferences and symposia.", ko: "전문 사설 업체들은 학술 회의와 심포지엄을 위한 대규모 출장 연회 및 음식 공급 서비스를 제공한다." },
-  "consensus": { en: "A broad scientific consensus affirms that human industrial activities drive modern climate shifts.", ko: "광범위한 과학적 합의는 인간의 산업 활동이 현대의 기후 변화를 주도한다는 점을 확인한다." }
+  "consensus": { en: "A broad scientific consensus affirms that human industrial activities drive modern climate shifts.", ko: "광범위한 과학적 합의는 인간의 산업 활동이 현대의 기후 변화를 주도한다는 점을 확인한다." },
+  "dissipation": { en: "The dissipation of atmospheric thermal energy occurs gradually as warm air radiates heat into space.", ko: "따뜻한 공기가 우주로 열을 방출함에 따라 대기 열에너지의 소멸과 분산이 점진적으로 일어난다." },
+  "contemporary": { en: "Unlike many of his artistic contemporaries, the painter received widespread critical acclaim during his lifetime.", ko: "자신의 수많은 동시대 예술가들과 달리, 그 화가는 생전에 광범위한 비평적 찬사를 받았다." },
+  "contemporaries": { en: "Unlike many of his artistic contemporaries, the painter received widespread critical acclaim during his lifetime.", ko: "자신의 수많은 동시대 예술가들과 달리, 그 화가는 생전에 광범위한 비평적 찬사를 받았다." },
+  "dedication": { en: "Her unwavering dedication to archaeological fieldwork led to the discovery of an ancient urban settlement.", ko: "고고학 현장 연구에 대한 그녀의 확고한 헌신과 전념은 고대 도시 거주지의 발견으로 이어졌다." },
+  "eclipse": { en: "During a total solar eclipse, astronomers can clearly photograph the outermost layers of the solar corona.", ko: "개기일식 동안 천문학자들은 태양 코로나의 가장 바깥쪽 층을 선명하게 촬영할 수 있다." },
+  "adamant": { en: "The lead geologist remained adamant that tectonic fault movements caused the catastrophic landslide.", ko: "수석 지질학자는 지각 단층 운동이 파멸적인 산사태를 일으켰다고 단호하게 주장했다." },
+  "spur": { en: "The invention of the steam locomotive helped spur industrial growth and interregional commerce across the continent.", ko: "증기 기관차의 발명은 대륙 전역에서 산업 성장과 지역 간 상업을 촉진하고 박차를 가하는 데 도움을 주었다." },
+  "spurred": { en: "The invention of the steam locomotive spurred industrial growth and interregional commerce across the continent.", ko: "증기 기관차의 발명은 대륙 전역에서 산업 성장과 지역 간 상업을 촉진하고 박차를 가했다." },
+  "quantitative": { en: "Modern sociological experiments combine qualitative interviews with rigorous quantitative data analysis.", ko: "현대 사회학 실험은 질적인 인터뷰와 엄격한 양적(정량적) 데이터 분석을 결합한다." },
+  "endeavor": { en: "Deep-sea oceanographic exploration is an ambitious scientific endeavor requiring immense technological resources.", ko: "심해 해양학 탐사는 막대한 기술적 자원을 필요로 하는 야심 찬 과학적 과업이자 노력이다." }
 };
 
 // --- Application State ---
