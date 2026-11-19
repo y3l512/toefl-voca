@@ -292,7 +292,7 @@ const TOEFL_SENTENCE_MAP = {
   "indispensable": { en: "Water is an indispensable requirement for the survival of all known living organisms.", ko: "물은 알려진 모든 생물체의 생존에 없어서는 안 될 필수적인 요소입니다." },
   "fiercely": { en: "Territorial animals fiercely defend their nesting areas against potential rivals.", ko: "텃세를 부리는 동물들은 잠재적 경쟁자에 맞서 자신의 둥지 구역을 사납게 맹렬히 방어합니다." },
   "aerial attack": { en: "Predatory hawks execute a swift aerial attack to capture prey in open fields.", ko: "맹금류 매는 탁 트인 들판에서 먹이를 포획하기 위해 신속한 공중 공격을 감행합니다." },
-  "repel": { en: "Plant chemical secretions serve to repel destructive herbivorous insects.", ko: "식물의 화학 분비물은 파괴적인 식물성 곤충을 격퇴하고 쫓아버리는 역할을 합니다." },
+  "repel": { meaning: "[동] 쫓아버리다 / 격퇴하다 / 밀어내다", en: "Plant chemical secretions serve to repel destructive herbivorous insects.", ko: "식물의 화학 분비물은 파괴적인 초식 곤충을 격퇴하고 쫓아버리는 역할을 한다." },
   "intruder": { en: "Guard dogs barked loudly upon sensing an unauthorized intruder near the perimeter.", ko: "경비견들은 경계 근처에서 무단 침입자를 감지하자 크게 짖었습니다." },
   "submerge": { en: "Heavy monsoons can submerge low-lying agricultural fields under meters of water.", ko: "강력한 몬순 폭우는 저지대 농경지를 수 미터 깊이의 물로 침수시키고 물에 잠기게 할 수 있습니다." },
   "prone to": { en: "Coastal regions are particularly prone to severe flooding during hurricane season.", ko: "해안 지역은 특히 허리케인 계절 동안 심각한 홍수를 겪기 쉬운 경향이 있습니다." },
@@ -443,7 +443,15 @@ const TOEFL_SENTENCE_MAP = {
   "spur": { en: "The invention of the steam locomotive helped spur industrial growth and interregional commerce across the continent.", ko: "증기 기관차의 발명은 대륙 전역에서 산업 성장과 지역 간 상업을 촉진하고 박차를 가하는 데 도움을 주었다." },
   "spurred": { en: "The invention of the steam locomotive spurred industrial growth and interregional commerce across the continent.", ko: "증기 기관차의 발명은 대륙 전역에서 산업 성장과 지역 간 상업을 촉진하고 박차를 가했다." },
   "quantitative": { en: "Modern sociological experiments combine qualitative interviews with rigorous quantitative data analysis.", ko: "현대 사회학 실험은 질적인 인터뷰와 엄격한 양적(정량적) 데이터 분석을 결합한다." },
-  "endeavor": { en: "Deep-sea oceanographic exploration is an ambitious scientific endeavor requiring immense technological resources.", ko: "심해 해양학 탐사는 막대한 기술적 자원을 필요로 하는 야심 찬 과학적 과업이자 노력이다." }
+  "endeavor": { en: "Deep-sea oceanographic exploration is an ambitious scientific endeavor requiring immense technological resources.", ko: "심해 해양학 탐사는 막대한 기술적 자원을 필요로 하는 야심 찬 과학적 과업이자 노력이다." },
+  "tactic": { meaning: "[명] 전술 / 책략 / 전략", en: "Military historians analyzed the defensive tactics employed by Roman legions during the frontier campaigns.", ko: "군사 역사가들은 국경 원정 기간 로마 군단이 사용한 방어 전술을 분석했다." },
+  "tactics": { meaning: "[명] 전술 / 책략 / 전략", en: "Military historians analyzed the defensive tactics employed by Roman legions during the frontier campaigns.", ko: "군사 역사가들은 국경 원정 기간 로마 군단이 사용한 방어 전술을 분석했다." },
+  "multifacet": { meaning: "[형] 다면적인 / 다각적인 / 여러 측면을 지닌", en: "Ecosystem restoration requires a multifaceted approach that balances environmental conservation with local economic needs.", ko: "생태계 복원은 환경 보전과 지역 경제적 필요의 균형을 맞추는 다면적인(다각적인) 접근 방식을 필요로 한다." },
+  "multifaceted": { meaning: "[형] 다면적인 / 다각적인 / 여러 측면을 지닌", en: "Ecosystem restoration requires a multifaceted approach that balances environmental conservation with local economic needs.", ko: "생태계 복원은 환경 보전과 지역 경제적 필요의 균형을 맞추는 다면적인(다각적인) 접근 방식을 필요로 한다." },
+  "foliage": { meaning: "[명] 나뭇잎 / 잎 / 군엽", en: "The dense rainforest foliage prevents direct sunlight from reaching the delicate understory vegetation below.", ko: "울창한 열대우림의 나뭇잎은 직사광선이 아래의 연약한 하층 식생에 도달하는 것을 차단한다." },
+  "pungent": { meaning: "[형] (맛·냄새가) 톡 쏘는 / 자극적인 / 신랄한", en: "Certain desert plants secrete pungent chemical compounds to deter herbivorous insects and grazing animals.", ko: "특정 사막 식물들은 초식 곤충과 방목 동물을 쫓아내기 위해 톡 쏘는 자극적인 화학 화합물을 분비한다." },
+  "impart": { meaning: "[동] (지식 등을) 전하다, 가르치다 / (성질을) 부여하다, 주다", en: "Experienced tribal elders gathered around the fire to impart traditional ecological knowledge to the younger generation.", ko: "경험 많은 부족 장로들은 젊은 세대에게 전통 생태학적 지식을 전하고 가르치기 위해 불 주변에 모였다." },
+  "airborne": { meaning: "[형] 공기로 운반되는 / 공중의 / 하늘에 떠 있는", en: "Volcanic eruptions eject massive ash plumes that release fine airborne particulates into the upper atmosphere.", ko: "화산 폭발은 상층 대기로 미세한 공기 중(공기로 운반되는) 미립자를 방출하는 거대한 화산재 기둥을 뿜어낸다." }
 };
 
 // --- Application State ---
