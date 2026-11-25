@@ -514,6 +514,141 @@ function shuffleArray(arr) {
   return shuffled;
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// TOEFL Academic Word Frequency Tiers
+// Source: Academic Word List (Coxhead, Victoria University of Wellington),
+//         New Academic Word List (Browne, Culligan & Phillips, 2013),
+//         COCA Academic Vocabulary List (Gardner & Davies)
+//
+// Tier 1 = AWL Sublists 1–3 + Core high-frequency (highest TOEFL payoff)
+// Tier 2 = AWL Sublists 4–6 + Important academic vocabulary
+// Tier 3 = AWL Sublists 7–10 + Specialized academic
+// Tier 4 = Domain-specific / rarely tested on TOEFL
+// ─────────────────────────────────────────────────────────────────────────────
+const TOEFL_WORD_FREQUENCY = {
+  // ═══ TIER 1: AWL Sublists 1–3 + Core High-Frequency Academic ═══
+  // AWL Sublist 1
+  "indicate":1, "derive":1, "contract":1, "inference":1, "interaction":1,
+  "indicative":1, "interpretation":1,
+  // AWL Sublist 2
+  "perceive":1, "theoretical":1, "distinguish":1, "perception":1, "property":1,
+  // AWL Sublist 3
+  "efficacy":1, "consolidate":1, "compensate":1, "comprise":1, "conform":1,
+  "coordination":1, "disperse":1, "consolidation":1,
+  // Core high-frequency (very common in TOEFL reading/listening passages)
+  "consistent":1, "extensive":1, "process":1, "variety":1, "excessive":1,
+  "partial":1, "exact":1, "whereas":1, "aspect":1, "probability":1,
+  "convention":1, "particular":1, "doubt":1, "conscious":1, "extend":1,
+  "frequency":1, "tone":1, "bear":1, "admit":1, "nerve":1, "map":1,
+  "efficiently":1, "appreciation":1, "prejudice":1, "extent":1,
+  "comprehending":1, "strike":1, "quantitative":1, "strategic":1,
+  "involvement":1,
+
+  // ═══ TIER 2: AWL Sublists 4–6 + High-Value TOEFL Academic Words ═══
+  // AWL Sublist 4
+  "prevail":2, "parallel":2, "implement":2, "retain":2, "impose":2,
+  "initiate":2, "dimension":2, "discipline":2,
+  // AWL Sublist 5
+  "facilitate":2, "challenge":2, "synthesize":2,
+  // AWL Sublist 6
+  "explicitly":2, "utilize":2, "initiative":2,
+  // High-value non-AWL academic / strong TOEFL presence
+  "rigorous":2, "meticulous":2, "induce":2, "eradicate":2, "impede":2,
+  "indigenous":2, "appease":2, "rite":2, "mitigate":2, "disparity":2,
+  "inadequate":2, "comprehend":2, "encompass":2, "advent":2, "nuance":2,
+  "convey":2, "adhere":2, "marginalize":2, "obscure":2, "reconcile":2,
+  "disparate":2, "decipher":2, "resonance":2, "mourn":2, "methodological":2,
+  "ethnicity":2, "census":2, "pervasive":2, "confront":2, "extraction":2,
+  "equilibrium":2, "jeopardize":2, "symmetry":2, "collide":2, "volatile":2,
+  "milestone":2, "linger":2, "safeguard":2, "stabilize":2, "indispensable":2,
+  "repel":2, "submerge":2, "prone to":2, "feasibility":2, "resilience":2,
+  "pivotal":2, "impair":2, "ripple":2, "erratic":2, "workforce":2,
+  "contingent":2, "corridor":2, "precipitation":2, "condense":2,
+  "discharge":2, "embrace":2, "stunt":2, "orchestrate":2, "compelling":2,
+  "dismantle":2, "traction":2, "retention":2, "cater":2, "consensus":2,
+  "dedication":2, "eclipse":2, "spur":2, "endeavor":2, "tactic":2,
+  "multifaceted":2, "impart":2, "distress":2, "oppression":2, "repression":2,
+  "synthetic":2, "molecule":2, "enzyme":2, "intermediary":2, "lucrative":2,
+  "hostility":2, "vessel":2, "bypass":2, "clinical":2, "precision":2,
+  "discrepancy":2, "resolution":2, "orthodox":2, "declaration":2,
+  "premature":2, "tackle":2, "hatred":2, "innate":2, "instill":2,
+  "withstand":2, "divert":2, "unintentional":2, "accordingly":2,
+  "adolescence":2, "intact":2, "adept":2, "seize":2, "stringent":2,
+  "coin":2, "deliberate":2, "convergence":2, "hormone":2, "photosynthesis":2,
+  "feat":2, "outbreak":2, "conclusive":2, "petition":2, "legislature":2,
+  "suburb":2, "mount":2, "oversight":2, "intensify":2, "absorption":2,
+  "sheer":2, "immerse":2, "contemplation":2, "ignite":2, "occurrence":2,
+  "horizontal":2, "nourishment":2, "queries":2, "secretive":2,
+  "astonishing":2, "captivate":2, "powerhouse":2, "refinement":2,
+  "inward":2, "strain":2, "facade":2, "in accordance with":2, "altitude":2,
+  "reservoirs":2, "strive":2, "fiercely":2, "intake":2, "intoxication":2,
+  "intrigue":2, "full-fledged":2, "habitable":2, "assortment":2,
+
+  // ═══ TIER 3: AWL Sublists 7–10 + Specialized Academic Words ═══
+  // AWL Sublist 7
+  "alleviate":3, "paradigm":3, "adapt":3, "adaptation":3, "systematic":3,
+  // AWL Sublist 8
+  "accumulate":3, "commodity":3, "contemporary":3,
+  // AWL Sublist 9
+  "suspend":3, "accommodate":3,
+  // AWL Sublist 10
+  "pose":3,
+  // Specialized academic (less frequently tested on TOEFL)
+  "serendipitous":3, "fortuitous":3, "dissipate":3, "neurological":3,
+  "subconscious":3, "overstate":3, "aristocratic":3, "patronage":3,
+  "stratification":3, "pinnacle":3, "propagation":3, "peninsula":3,
+  "cessation":3, "plasticity":3, "electrode":3, "undocumented":3,
+  "cavity":3, "usher":3, "hypothetically":3, "frivolous":3,
+  "disposition":3, "speculator":3, "claimant":3, "lax":3, "tract":3,
+  "lumber":3, "lapse":3, "rouse":3, "emotional regulation":3,
+  "elongate":3, "trunk":3, "gutter":3, "sewer":3, "reek":3,
+  "rest on":3, "hygienic":3, "filtration":3, "bleach":3, "stench":3,
+  "diffusion":3, "inadvertently":3, "annotate":3, "interpretive":3,
+  "iteration":3, "subvert":3, "indistinct":3, "imbue":3,
+  "inscription":3, "vernacular":3, "strife":3, "ameliorate":3,
+  "populace":3, "permafrost":3, "pathogen":3, "cataclysmic":3,
+  "seismic":3, "flammable":3, "rudimentary":3, "pendulum":3,
+  "solidify":3, "lump":3, "embryonic":3, "clump":3, "elucidate":3,
+  "circumvent":3, "restorative":3, "coastline":3, "teem with":3,
+  "receptor":3, "secretion":3, "intruder":3, "sustenance":3,
+  "extraterrestrial":3, "judicious":3, "aspirational":3, "juxtapose":3,
+  "rejuvenate":3, "arteries":3, "suspense":3, "startle":3, "airborne":3,
+  "foliage":3, "pungent":3, "dissipation":3, "adamant":3,
+  "obsolescence":3, "thaw":3, "sovereignty":3, "illustrious":3,
+  "amalgamation":3, "veneer":3, "veneration":3, "sovereign":3,
+  "impermanence":3, "endearment":3, "clog":3,
+
+  // ═══ TIER 4: Highly Specialized / Domain-Specific (Study Last) ═══
+  "reveler":4, "dithyramb":4, "grandeur":4, "unpretentious":4,
+  "compositional":4, "germination":4, "germinate":4, "syncretic":4,
+  "syncretism":4, "propitiation":4, "coreligionist":4, "monotheism":4,
+  "bipedalism":4, "cattle rancher":4, "subconsciousness":4, "thalamus":4,
+  "cerebral cortex":4, "clinical significance":4, "phototropism":4,
+  "increase energy production":4, "seedling":4, "aqueduct":4,
+  "ephemerality":4, "soliloquy":4, "epitaph":4, "accompaniment":4,
+  "triad":4, "governable":4, "detonation":4, "tremor propagation":4,
+  "accretion":4, "electrostatic":4, "planetesimal":4, "cortical":4,
+  "complementary receptor":4, "homeostasis":4, "aerial attack":4,
+  "hydrogen sulfide":4, "hydrothermal vent":4, "comprehencing":4,
+  "assembly-line process":4, "outcompete":4, "sparsity":4,
+  "random manner":4, "tendril":4, "preciptation":4, "poleward":4
+};
+
+// Sort words by TOEFL academic frequency tier (Tier 1 first → Tier 4 last)
+// Within the same tier, order is randomized for variety each study session
+function sortByFrequency(words) {
+  return [...words]
+    .map(w => ({
+      ...w,
+      _tier: TOEFL_WORD_FREQUENCY[w.word.toLowerCase().trim()]
+           || TOEFL_WORD_FREQUENCY[w.word.trim()]
+           || 3,
+      _rand: Math.random()
+    }))
+    .sort((a, b) => a._tier !== b._tier ? a._tier - b._tier : a._rand - b._rand)
+    .map(({ _tier, _rand, ...w }) => w);
+}
+
 const GENERIC_TEMPLATE_PATTERNS = [
   'In academic contexts,',
   'refers to (',
@@ -1123,7 +1258,7 @@ async function parseCSVData(csvText) {
   state.words = parsedWords;
   
   const unmemorizedWords = state.words.filter(w => !state.knownWords.has(w.id));
-  state.allCardStack = shuffleArray(unmemorizedWords);
+  state.allCardStack = sortByFrequency(unmemorizedWords);
   state.favCardStack = shuffleArray(state.words.filter(w => state.favorites.has(w.id)));
 
   updateUI();
@@ -1205,7 +1340,7 @@ function useFallbackData() {
 
   state.words = words;
   const unmemorized = words.filter(w => !state.knownWords.has(w.id));
-  state.allCardStack = shuffleArray(unmemorized);
+  state.allCardStack = sortByFrequency(unmemorized);
   state.favCardStack = shuffleArray(words.filter(w => state.favorites.has(w.id)));
   updateUI();
 }
@@ -1342,14 +1477,14 @@ function resetAllProgress() {
   if (state.isCloudSynced && typeof cloudClearKnownWords === 'function') {
     cloudClearKnownWords();
   }
-  state.allCardStack = shuffleArray(state.words);
+  state.allCardStack = sortByFrequency(state.words);
   updateUI();
   showToast('학습 기록이 초기화되었습니다! 🔄');
 }
 
 function reloadUnmemorizedStack() {
   const unmemorized = state.words.filter(w => !state.knownWords.has(w.id));
-  state.allCardStack = shuffleArray(unmemorized);
+  state.allCardStack = sortByFrequency(unmemorized);
   updateUI();
   showToast('미암기 카드를 다시 불러왔습니다! 📚');
 }
@@ -1904,7 +2039,7 @@ function bindEvents() {
       
       if (tabId === 'tabAll') {
         const unmemorized = state.words.filter(w => !state.knownWords.has(w.id));
-        state.allCardStack = shuffleArray(unmemorized);
+        state.allCardStack = sortByFrequency(unmemorized);
       } else if (tabId === 'tabFav') {
         state.favCardStack = shuffleArray(state.words.filter(w => state.favorites.has(w.id)));
       }
@@ -2123,7 +2258,7 @@ function bindEvents() {
         });
 
         const unmemorizedWords = state.words.filter(w => !state.knownWords.has(w.id));
-        state.allCardStack = shuffleArray(unmemorizedWords);
+        state.allCardStack = sortByFrequency(unmemorizedWords);
         state.favCardStack = shuffleArray(state.words.filter(w => state.favorites.has(w.id)));
 
         updateUI();
@@ -2164,7 +2299,7 @@ function bindEvents() {
           w.status = 'unseen';
         });
 
-        state.allCardStack = shuffleArray([...state.words]);
+        state.allCardStack = sortByFrequency([...state.words]);
         state.favCardStack = [];
         state.allCardIndex = 0;
         state.favCardIndex = 0;
@@ -2897,7 +3032,7 @@ async function syncCloudStateSilently() {
       });
 
       const unmemorizedWords = state.words.filter(w => !state.knownWords.has(w.id));
-      state.allCardStack = shuffleArray(unmemorizedWords);
+      state.allCardStack = sortByFrequency(unmemorizedWords);
       state.favCardStack = shuffleArray(state.words.filter(w => state.favorites.has(w.id)));
 
       updateUI();
